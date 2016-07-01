@@ -3,13 +3,13 @@
 //faze 1: tiles-45;faze 2: tiles-34;faze 3: tiles-23;
 //each tile picks a random place on the board in sequence
 //area must be populated to place a tile unless its the bottom layer
-​
+
 //A start function
 var startGame = function () {
   //-- start is linked to a button
   //-- user is playing function
 }
-​
+
 //-------populate the game board-----------//
 var populateGameBoard = function () {
   //global variable
@@ -19,7 +19,7 @@ var populateGameBoard = function () {
   var oneCount = [];
   var twoCount = [];
   var threeCount = [];
-​
+
   var populateLayer1 = function () {
     for (var i = 0; i < ourTiles.length; i++) {
       var randomNum = Math.round(100 * Math.random())/100;
@@ -36,7 +36,7 @@ var populateGameBoard = function () {
     console.log("this is 1's: " + oneCount.length);
     populateLayer2();
   }
-​
+
   var populateLayer2 = function () {
     oneCount = [];
     for (var i = 0; i < ourTiles.length; i++) {
@@ -57,10 +57,10 @@ var populateGameBoard = function () {
     console.log("this is 2's: " + twoCount.length);
     populateLayer3();
   }
-​
+
   var populateLayer3 = function () {
     twoCount = [];
-​
+
     for (var i = 0; i < ourTiles.length; i++) {
       if (ourTiles[i].style.zIndex === '2') {
         var randomNum = Math.round(100 * Math.random())/100;
@@ -82,10 +82,11 @@ var populateGameBoard = function () {
     console.log("this is new 2's: " + twoCount.length);
     console.log("this is 3's: " + threeCount.length);
   }
-​
+
   populateLayer1();
-​
+
   if (totalCount.length < 100) {
+    console.log('Error not enough tiles!')
     totalCount = []
     zeroCount = [];
     oneCount = [];
@@ -93,15 +94,15 @@ var populateGameBoard = function () {
     threeCount = [];
     populateLayer1();
   }
-​
+
 };
 //------End of index generator-------//
-​
+
 //randomly generate a picture
 var pictureGenerator = function () {
   //-- must always have pairs
 }
-​
+
 //link the timer to the game
 /*------------------TIMER------------------*/
   startPauseButton = document.getElementById("startPause")
@@ -155,19 +156,19 @@ var pictureGenerator = function () {
     }
   }
 /*------------------/TIMER------------------*/
-​
+
 //have a score function
 var getHighScore = function () {
   //-- score counts up the more you get right
   //-- highscore function
 }
-​
+
 //gameover function
 var gameOver = function () {
   //-- displays a game over sign
   //-- resets start button
 }
-​
+
 //win game function
 var winGame = function () {
   //-- display score
