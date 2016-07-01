@@ -1,18 +1,18 @@
 //---------Object Selectors---------
-var startScreen = $('#startScreen')
-var startButton = $('#startButton');
-var gameScreen = $('#gameScreen')
+var loginScreen = $('#loginScreen');
+var loginButton = $('#loginButton');
+var gameScreen = $('#gameScreen');
+var wallpaper = $('.loginWallpaper');
 
 
-
-startButton.on('click', function () {
- console.log('test')
- navigate(currentPage, gameScreen)
+loginButton.on('click', function () {
+  // wallpaper.removeClass('loginWallpaper');
+  navigate(currentPage, gameScreen)
 });
 
 
-startScreen.css('display', 'block')
-var currentPage = startScreen;
+loginScreen.css('display', 'block')
+var currentPage = loginScreen;
 
 
 var navigate = function(pageFrom, pageTo) {

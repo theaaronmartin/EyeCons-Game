@@ -1,0 +1,68 @@
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+.page {
+  overflow: auto;
+  display: none;
+}
+
+.loginWallpaper {
+  background-image: url('assets/images/eyecons-bg.png');
+  /*background-size: cover;*/
+  /*background-position: center;*/
+}
+
+#timerOutput {
+  position: relative;
+}
+
+#startPause {
+  margin-top: -190px;
+  margin-left: 50px;
+}
+
+#resetButton {
+  margin-top: -190px;
+  margin-left: 25px;
+}
+
+.container-fluid {
+  padding-left: 0;
+}
+
+#timerOutput p {
+  color: #fff;
+}
+
+.eyecon-logo {
+  display: block;
+  margin: auto;
+  margin-bottom: 25px;
+}
+
+.pick-name {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  text-align: center;
+  display: block;
+}
+
+#loginButton {
+  position: relative;
+  display: block;
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+#userName {
+  width: 50%;
+  margin: auto;
+  margin-top: 35px;
+  text-align: center;
+}
