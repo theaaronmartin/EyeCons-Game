@@ -1,5 +1,5 @@
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .page {
@@ -14,25 +14,28 @@
 }
 
 #timerOutput {
-  position: relative;
+  font-size: 28px;
+  position: absolute;
+  color: #fff;
+  margin-top: -150px;
+  margin-left: 45px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 #startPause {
   margin-top: -190px;
   margin-left: 50px;
+  width: 80px;
 }
 
 #resetButton {
   margin-top: -190px;
   margin-left: 25px;
+  width: 80px;
 }
 
 .container-fluid {
   padding-left: 0;
-}
-
-#timerOutput p {
-  color: #fff;
 }
 
 .eyecon-logo {
