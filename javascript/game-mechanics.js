@@ -7,6 +7,7 @@
 //A start function
 var startGame = function () {
   //-- start is linked to a button
+
   //-- user is playing function
 }
 
@@ -23,11 +24,60 @@ var pictureGenerator = function () {
 }
 
 //link the timer to the game
-var gameTimer = function () {
-  //-- count down function
-  //-- 2:30 mins to pass
+
+/*------------------TIMER------------------*/
+  startPauseButton = document.getElementById("startPause")
+  startPauseButton.addEventListener('click', startPause)
+  resetTimeButton = document.getElementById("resetButton")
+  resetTimeButton.addEventListener('click', reset)
+  timerOutput = document.getElementById("timerOutput")
+  var time = 0;
+  var running = 0;
+  function startPause () {
+    if(running == 0){
+      running = 1;
+      increment();
+      startPauseButton.innerHTML = "pause";
+    }else{
+      running = 0;
+      startPauseButton.innerHTML = "Resume";
+    }
+  }
+  function reset () {
+    startPauseButton.innerHTML = "Start";
+    timerOutput.innerHTML = "00:00:00";
+    running = 0;
+    time = 0;
+    return;
+  }
+  function increment() {
+    if(running == 1){
+      setTimeout(function(){
+        time++
+        var mins = Math.floor(time/10/60);
+        var secs = Math.floor(time/10 % 60);
+        var tenths = time % 10;
+        if(mins < 10){
+          mins = "0" + mins;
+        }
+        if (secs < 10) {
+          secs = "0" + secs;
+        }
+        if (secs >= 60){
+          secs = 0;
+        }
+        if (mins == 0 && secs == 5) {
+            reset()
+            console.log('Game is over')
+            return;
+        }
+        timerOutput.innerHTML = mins + ":" + secs + ':' + tenths;
+        this.increment()
+      }, 100);
+    }
+  }
+/*------------------/TIMER------------------*/
   //-- link best timer
-}
 
 //have a score function
 var getHighScore = function () {
@@ -48,3 +98,55 @@ var winGame = function () {
   //-- check if it is greater than high score
   //-- check is time is better
 }
+
+
+
+//
+// startPauseButton = document.getElementById("startPause")
+// timerOutput = document.getElementById("timerOutput")
+// var time = 0;
+// var running = 0;
+// function startPause () {
+//   if(running == 0){
+//     running = 1;
+//     increment();
+//     startPauseButton.innerHTML = "pause";
+//   }else{
+//     running = 0;
+//     startPauseButton.innerHTML = "Resume";
+//   }
+// }
+// function reset() {
+//   running = 0;
+//   time = 0;
+//   startPauseButton.innerHTML = "Start";
+//   timerOutput.innerHTML = "00:00:00";
+//   return;
+// }
+// var increment = function() {
+//   if(running == 1){
+//     setTimeout(function(){
+//       time++
+//       var mins = Math.floor(time/10/60);
+//       var secs = Math.floor(time/10 % 60);
+//       var tenths = time % 10;
+//       if(mins < 10){
+//         mins = "0" + mins;
+//       }
+//       if (secs < 10) {
+//         secs = "0" + secs;
+//       }
+//       if (secs >= 60){
+//         secs = 0;
+//       }
+//
+//       if (mins == 2 && secs == 30) {
+//           reset()
+//           console.log('Game is over')
+//           return;
+//       }
+//       timerOutput.innerHTML = mins + ":" + secs + ':' + tenths;
+//       increment()
+//     }, 100);
+//   }
+// }
