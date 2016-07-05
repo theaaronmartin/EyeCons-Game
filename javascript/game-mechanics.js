@@ -8,6 +8,14 @@
 var startButton = document.getElementById('startButton');
 var resetButton = document.getElementById('resetButton');
 var pauseButton = document.getElementById('pauseButton');
+var timerOutput = document.getElementById("timerOutput");
+var time = 0;
+var running = 0;
+
+//------Global Event Listeners--------//
+resetButton.addEventListener('click', resetTimer);
+pauseButton.addEventListener('click', pauseTimer);
+startButton.addEventListener('click', startGame);
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
@@ -102,12 +110,6 @@ var pictureGenerator = function () {
 
 //link the timer to the game
 /*------------------TIMER------------------*/
-resetButton.addEventListener('click', resetTimer);
-pauseButton.addEventListener('click', pauseTimer);
-var timerOutput = document.getElementById("timerOutput");
-var time = 0;
-var running = 0;
-
 function startTimer () {
   pauseTimer();
 }
@@ -189,5 +191,4 @@ var startGame = function () {
   populateGameBoard();
 }
 
-startButton.addEventListener('click', startGame)
 // resetButton.style.display = 'none';
