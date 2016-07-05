@@ -7,12 +7,13 @@
 //A start function
 var startGame = function () {
   //-- start is linked to a button
+  
   //-- user is playing function
 }
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
-  //global variable
+  //global variables
   var ourTiles = document.querySelectorAll('.tile-spot');
   var totalCount = []
   var zeroCount = [];
@@ -32,7 +33,6 @@ var populateGameBoard = function () {
         totalCount.push(ourTiles[i].style.zIndex);
       }
     }
-    console.log("this is 0's: " + zeroCount.length);
     console.log("this is 1's: " + oneCount.length);
     populateLayer2();
   }
@@ -53,7 +53,6 @@ var populateGameBoard = function () {
       } else {
       }
     }
-    console.log("this is new 1's: " + oneCount.length);
     console.log("this is 2's: " + twoCount.length);
     populateLayer3();
   }
@@ -79,7 +78,6 @@ var populateGameBoard = function () {
       } else {
       }
   }
-    console.log("this is new 2's: " + twoCount.length);
     console.log("this is 3's: " + threeCount.length);
   }
 
