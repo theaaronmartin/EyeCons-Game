@@ -8,11 +8,14 @@
 var startButton = document.getElementById('startButton');
 var resetButton = document.getElementById('resetButton');
 var pauseButton = document.getElementById('pauseButton');
+var timerOutput = document.getElementById("timerOutput");
+var ourTiles = document.querySelectorAll('.tile-spot');
+var time = 0;
+var running = 0;
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
-  //gameboard variables
-  var ourTiles = document.querySelectorAll('.tile-spot');
+  //gameboard arrays
   var totalCount = [];
   var zeroCount = [];
   var oneCount = [];
@@ -29,6 +32,9 @@ var populateGameBoard = function () {
         ourTiles[i].dataset.layer = 1;
         oneCount.push(ourTiles[i].dataset.layer);
         totalCount.push(ourTiles[i].dataset.layer);
+        var picture = pictureGenerator()
+        picture.style.zIndex = '1';
+        ourTiles[i].appendChild(picture);
       }
     }
     console.log("this is 1's: " + oneCount.length);
@@ -47,6 +53,9 @@ var populateGameBoard = function () {
           ourTiles[i].dataset.layer = 2;
           twoCount.push(ourTiles[i].dataset.layer);
           totalCount.push(ourTiles[i].dataset.layer);
+          var picture = pictureGenerator()
+          picture.style.zIndex = '2';
+          ourTiles[i].appendChild(picture);
         }
       } else {
       }
@@ -69,6 +78,9 @@ var populateGameBoard = function () {
             ourTiles[i].dataset.layer = 3;
             threeCount.push(ourTiles[i].dataset.layer);
             totalCount.push(ourTiles[i].dataset.layer);
+            var picture = pictureGenerator()
+            picture.style.zIndex = '3';
+            ourTiles[i].appendChild(picture);
           } else {
             break;
           }
@@ -88,37 +100,43 @@ var populateGameBoard = function () {
     oneCount = [];
     twoCount = [];
     threeCount = [];
+    for (i = 0; i < ourTiles.length; i++) {
+      ourTiles[i].innerHTML = '';
+    }
     populateLayer1();
   }
 
-  startTimer()
+  startTimer();
 };
 //------End of index generator-------//
 
 //randomly generate a picture
 var pictureGenerator = function () {
-  //-- must always have pairs
+  var woodenBlock = document.createElement('DIV');
+  var randomPicture = document.createElement('IMG');
+  woodenBlock.classList.add('woodenTile');
+  randomPicture.classList.add('tile-pic');
+  woodenBlock.appendChild(randomPicture);
+  return woodenBlock;
 }
 
 //link the timer to the game
 /*------------------TIMER------------------*/
-resetButton.addEventListener('click', resetTimer);
-pauseButton.addEventListener('click', pauseTimer);
-var timerOutput = document.getElementById("timerOutput");
-var time = 0;
-var running = 0;
-
 function startTimer () {
   pauseTimer();
 }
 
 function resetTimer () {
+  console.log('Game has been reset')
   // resetButton.style.display = 'none';
   // startButton.style.display = 'block';
-  timerOutput.innerHTML = "00:00:00";
-  pauseButton.innerHTML = "Pause";
   running = 0;
   time = 0;
+  timerOutput.innerHTML = "00:00:00";
+  pauseButton.innerHTML = "Pause";
+  for (i = 0; i < ourTiles.length; i++) {
+    ourTiles[i].innerHTML = '';
+  }
   return;
 }
 
@@ -186,8 +204,14 @@ var startGame = function () {
   //needs to reset score timer and everything
   // startButton.style.display = 'none';
   // resetButton.style.display = 'block';
+  for (i = 0; i < ourTiles.length; i++) {
+    ourTiles[i].innerHTML = '';
+  }
   populateGameBoard();
 }
 
-startButton.addEventListener('click', startGame)
+//-------Event Listeners------//
+resetButton.addEventListener('click', resetTimer);
+pauseButton.addEventListener('click', pauseTimer);
+startButton.addEventListener('click', startGame);
 // resetButton.style.display = 'none';
