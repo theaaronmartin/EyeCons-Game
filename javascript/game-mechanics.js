@@ -5,8 +5,8 @@
 //area must be populated to place a tile unless its the bottom layer
 
 //-----Global Variables-----//
-var startPauseButton = document.getElementById('startPause')
-var resetTimeButton = document.getElementById("resetButton")
+var startResetButton = document.getElementById('startReset')
+var pauseButton = document.getElementById("PauseButton")
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
@@ -102,7 +102,7 @@ var pictureGenerator = function () {
 //link the timer to the game
 /*------------------TIMER------------------*/
 var timer = function () {
-  resetTimeButton.addEventListener('click', reset)
+  pauseButton.addEventListener('click', startPause)
   var timerOutput = document.getElementById("timerOutput")
   var time = 0;
   var running = 0;
@@ -110,14 +110,14 @@ var timer = function () {
     if(running == 0){
       running = 1;
       increment();
-      startPauseButton.innerHTML = "Pause";
+      pauseButton.innerHTML = "Pause";
     }else{
       running = 0;
-      startPauseButton.innerHTML = "Resume";
+      pauseButton.innerHTML = "Resume";
     }
   }
   function reset () {
-    startPauseButton.innerHTML = "Start";
+    startResetButton.innerHTML = "Start";
     timerOutput.innerHTML = "00:00:00";
     running = 0;
     time = 0;
@@ -179,4 +179,4 @@ var startGame = function () {
   populateGameBoard();
 }
 
-startPauseButton.addEventListener('click', startGame)
+startResetButton.addEventListener('click', startGame)
