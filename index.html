@@ -26,7 +26,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body">
-              <form name="userName" onsubmit="return validateForm();">
+              <form name="userName">
                 <div class="form-group">
                   <div>
                     <img class="eyecon-logo" src="assets/images/eyecons_logo_72x72.png" alt="" />
@@ -34,11 +34,12 @@
                   <label class="pick-name" for="userName" name="userName">Pick a name!</label>
                   <input type="text" class="form-control" id="userName" placeholder="SargentCracker">
                 </div>
-              </form>
+
             </div>
             <div class="modal-footer">
-              <button id="loginButton" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+              <button id="loginButton" onclick="validateForm()" type="submit" value="Submit" class="btn btn-default" data-dismiss="modal"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
             </div>
+            </form>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
@@ -59,7 +60,11 @@
       </div>
       <!-- game board mechanics do not delete -->
       <article class="game-board">
-        <div class="tile-spot"></div>
+        <div class="tile-spot">
+          <div class="">
+            <img class="" src=""/>
+          </div>
+        </div>
         <div class="tile-spot"></div>
         <div class="tile-spot"></div>
         <div class="tile-spot"></div>
@@ -125,6 +130,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript" src="javascript/custom.js"></script>
     <script type="text/javascript" src="javascript/main.js"></script>
-    <script src="javascript/game-mechanics.js" charset="utf-8"></script>
+    <script type="text/javascript" src="javascript/game-mechanics.js"></script>
   </body>
 </html>
