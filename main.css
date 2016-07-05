@@ -86,7 +86,19 @@
   position: relative;
 }
 
+.game-board {
+  width: 616px;
+  height: 704px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 10px -10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px -10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px -10px 5px 0px rgba(0,0,0,0.75);
+}
+
 .tile-spot {
   width: 88px;
-  
+  height: 88px;
+  float: right;
+  border: 1px solid black;
 }
