@@ -95,8 +95,8 @@
 }
 
 .game-board {
-  width: 616px;
-  height: 704px;
+  width: 646px;
+  height: 737px;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 10px -10px 5px 0px rgba(0,0,0,0.75);
@@ -109,4 +109,19 @@
   height: 88px;
   float: right;
   border: 1px solid black;
+  margin: 2px;
+}
+
+.woodenTile {
+  background-image: url('assets/images/eyecons-tile-plain-88x88.png');
+  height: 100%;
+}
+
+.tile-pic {
+  border-radius: 5px;
+  width: 85%;
+  vertical-align: text-top;
+  position: relative;
+  left: 3px;
+  top: 2px;
 }
