@@ -26,12 +26,12 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body">
-              <form>
+              <form name="userName" onsubmit="return validateForm();">
                 <div class="form-group">
                   <div>
                     <img class="eyecon-logo" src="assets/images/eyecons_logo_72x72.png" alt="" />
                   </div>
-                  <label class="pick-name" for="userName">Pick a name!</label>
+                  <label class="pick-name" for="userName" name="userName">Pick a name!</label>
                   <input type="text" class="form-control" id="userName" placeholder="SargentCracker">
                 </div>
               </form>
@@ -51,8 +51,8 @@
             <img class="header-foreground" src="assets/images/eyecons-bar-landscape-2.png" alt=""/>
               <div>
                 <div id="timerOutput">00:00:00</div>
-                <button id="startPause" type="button" class="btn btn-default">Start</button>
-                <button id="resetButton" type="button" class="btn btn-default">Reset</button>
+                <button id="startReset" type="button" class="btn btn-default">Start</button>
+                <button id="PauseButton" type="button" class="btn btn-default">Pause</button>
               </div>
           </div>
       </div>
