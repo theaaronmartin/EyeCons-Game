@@ -7,13 +7,12 @@ var wallpaper = $('.loginWallpaper');
 
 loginButton.on('click', function() {
     // wallpaper.removeClass('loginWallpaper');
-  var noInput = document.forms['userName']['userName'].value;
-  if (noInput === null || noInput === '') {
-    alert('Please pick a User Name');
-    $('#myModal').modal({backdrop: 'static', keyboard: false});
-  } else {
+  // var noInput = document.forms['userName']['userName'].value;
+  // if (noInput === null || noInput === '') {
+  //   alert('Please pick a User Name');
+  //   $('#myModal').modal({backdrop: 'static', keyboard: false});
+  // } else {
     navigate(currentPage, gameScreen)
-  }
 });
 
 
