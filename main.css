@@ -26,12 +26,19 @@
   margin-top: -190px;
   margin-left: 50px;
   width: 80px;
+  position: relative;
+}
+
+#startPause:focus,
+#resetButton:focus {
+  outline: 0;
 }
 
 #resetButton {
   margin-top: -190px;
   margin-left: 25px;
   width: 80px;
+  position: relative;
 }
 
 .container-fluid {
@@ -68,4 +75,18 @@
   margin: auto;
   margin-top: 35px;
   text-align: center;
+}
+
+.header-background {
+  position: absolute;
+  left: 0;
+}
+
+.header-foreground {
+  position: relative;
+}
+
+.tile-spot {
+  width: 88px;
+  
 }
