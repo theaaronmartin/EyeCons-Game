@@ -46,7 +46,7 @@ var populateGameBoard = function () {
     for (var i = 0; i < ourTiles.length; i++) {
       if (ourTiles[i].dataset.layer === '1') {
         var randomNum = Math.round(100 * Math.random())/100;
-        if(randomNum <= 0.22) {
+        if(randomNum <= 0.20) {
           ourTiles[i].dataset.layer = 1;
           oneCount.push(ourTiles[i].dataset.layer);
         } else {
