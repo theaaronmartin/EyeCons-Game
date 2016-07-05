@@ -8,14 +8,6 @@
 var startButton = document.getElementById('startButton');
 var resetButton = document.getElementById('resetButton');
 var pauseButton = document.getElementById('pauseButton');
-var timerOutput = document.getElementById("timerOutput");
-var time = 0;
-var running = 0;
-
-//------Global Event Listeners--------//
-resetButton.addEventListener('click', resetTimer);
-pauseButton.addEventListener('click', pauseTimer);
-startButton.addEventListener('click', startGame);
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
@@ -31,12 +23,12 @@ var populateGameBoard = function () {
     for (var i = 0; i < ourTiles.length; i++) {
       var randomNum = Math.round(100 * Math.random())/100;
       if(randomNum <= 0.18) {
-        ourTiles[i].style.zIndex = 0;
-        zeroCount.push(ourTiles[i].style.zIndex);
+        ourTiles[i].dataset.layer = 0;
+        zeroCount.push(ourTiles[i].dataset.layer);
       } else {
-        ourTiles[i].style.zIndex = 1;
-        oneCount.push(ourTiles[i].style.zIndex);
-        totalCount.push(ourTiles[i].style.zIndex);
+        ourTiles[i].dataset.layer = 1;
+        oneCount.push(ourTiles[i].dataset.layer);
+        totalCount.push(ourTiles[i].dataset.layer);
       }
     }
     console.log("this is 1's: " + oneCount.length);
@@ -46,15 +38,15 @@ var populateGameBoard = function () {
   var populateLayer2 = function () {
     oneCount = [];
     for (var i = 0; i < ourTiles.length; i++) {
-      if (ourTiles[i].style.zIndex === '1') {
+      if (ourTiles[i].dataset.layer === '1') {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.22) {
-          ourTiles[i].style.zIndex = 1;
-          oneCount.push(ourTiles[i].style.zIndex);
+          ourTiles[i].dataset.layer = 1;
+          oneCount.push(ourTiles[i].dataset.layer);
         } else {
-          ourTiles[i].style.zIndex = 2;
-          twoCount.push(ourTiles[i].style.zIndex);
-          totalCount.push(ourTiles[i].style.zIndex);
+          ourTiles[i].dataset.layer = 2;
+          twoCount.push(ourTiles[i].dataset.layer);
+          totalCount.push(ourTiles[i].dataset.layer);
         }
       } else {
       }
@@ -67,16 +59,16 @@ var populateGameBoard = function () {
     twoCount = [];
 
     for (var i = 0; i < ourTiles.length; i++) {
-      if (ourTiles[i].style.zIndex === '2') {
+      if (ourTiles[i].dataset.layer === '2') {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.22) {
-          ourTiles[i].style.zIndex = 2;
-          twoCount.push(ourTiles[i].style.zIndex);
+          ourTiles[i].dataset.layer = 2;
+          twoCount.push(ourTiles[i].dataset.layer);
         } else {
           if (totalCount.length < 100) {
-            ourTiles[i].style.zIndex = 3;
-            threeCount.push(ourTiles[i].style.zIndex);
-            totalCount.push(ourTiles[i].style.zIndex);
+            ourTiles[i].dataset.layer = 3;
+            threeCount.push(ourTiles[i].dataset.layer);
+            totalCount.push(ourTiles[i].dataset.layer);
           } else {
             break;
           }
@@ -110,6 +102,12 @@ var pictureGenerator = function () {
 
 //link the timer to the game
 /*------------------TIMER------------------*/
+resetButton.addEventListener('click', resetTimer);
+pauseButton.addEventListener('click', pauseTimer);
+var timerOutput = document.getElementById("timerOutput");
+var time = 0;
+var running = 0;
+
 function startTimer () {
   pauseTimer();
 }
@@ -191,4 +189,5 @@ var startGame = function () {
   populateGameBoard();
 }
 
+startButton.addEventListener('click', startGame)
 // resetButton.style.display = 'none';
