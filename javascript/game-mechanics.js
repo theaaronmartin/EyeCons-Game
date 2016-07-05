@@ -5,14 +5,15 @@
 //area must be populated to place a tile unless its the bottom layer
 
 //-----Global Variables-----//
-var startResetButton = document.getElementById('startReset')
-var pauseButton = document.getElementById("PauseButton")
+var startButton = document.getElementById('startButton');
+var resetButton = document.getElementById('resetButton');
+var pauseButton = document.getElementById('pauseButton');
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
   //gameboard variables
   var ourTiles = document.querySelectorAll('.tile-spot');
-  var totalCount = []
+  var totalCount = [];
   var zeroCount = [];
   var oneCount = [];
   var twoCount = [];
@@ -41,7 +42,7 @@ var populateGameBoard = function () {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.22) {
           ourTiles[i].style.zIndex = 1;
-          oneCount.push(ourTiles[i].style.zIndex)
+          oneCount.push(ourTiles[i].style.zIndex);
         } else {
           ourTiles[i].style.zIndex = 2;
           twoCount.push(ourTiles[i].style.zIndex);
@@ -62,7 +63,7 @@ var populateGameBoard = function () {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.22) {
           ourTiles[i].style.zIndex = 2;
-          twoCount.push(ourTiles[i].style.zIndex)
+          twoCount.push(ourTiles[i].style.zIndex);
         } else {
           if (totalCount.length < 100) {
             ourTiles[i].style.zIndex = 3;
@@ -81,8 +82,8 @@ var populateGameBoard = function () {
   populateLayer1();
 
   if (totalCount.length < 100) {
-    console.log('Error not enough tiles!')
-    totalCount = []
+    console.log('Error not enough tiles!');
+    totalCount = [];
     zeroCount = [];
     oneCount = [];
     twoCount = [];
@@ -90,7 +91,7 @@ var populateGameBoard = function () {
     populateLayer1();
   }
 
-  timer()
+  startTimer()
 };
 //------End of index generator-------//
 
@@ -101,55 +102,62 @@ var pictureGenerator = function () {
 
 //link the timer to the game
 /*------------------TIMER------------------*/
-var timer = function () {
-  pauseButton.addEventListener('click', startPause)
-  var timerOutput = document.getElementById("timerOutput")
-  var time = 0;
-  var running = 0;
-  function startPause () {
-    if(running == 0){
-      running = 1;
-      increment();
-      pauseButton.innerHTML = "Pause";
-    }else{
-      running = 0;
-      pauseButton.innerHTML = "Resume";
-    }
-  }
-  function reset () {
-    startResetButton.innerHTML = "Start";
-    timerOutput.innerHTML = "00:00:00";
+resetButton.addEventListener('click', resetTimer);
+pauseButton.addEventListener('click', pauseTimer);
+var timerOutput = document.getElementById("timerOutput");
+var time = 0;
+var running = 0;
+
+function startTimer () {
+  pauseTimer();
+}
+
+function resetTimer () {
+  // resetButton.style.display = 'none';
+  // startButton.style.display = 'block';
+  timerOutput.innerHTML = "00:00:00";
+  pauseButton.innerHTML = "Pause";
+  running = 0;
+  time = 0;
+  return;
+}
+
+function pauseTimer () {
+  if(running === 0) {
+    running = 1;
+    incrementTimer();
+    pauseButton.innerHTML = "Pause";
+  } else {
     running = 0;
-    time = 0;
-    return;
+    pauseButton.innerHTML = "Resume";
   }
-  function increment() {
-    if(running == 1){
-      setTimeout(function(){
-        time++
-        var mins = Math.floor(time/10/60);
-        var secs = Math.floor(time/10 % 60);
-        var tenths = time % 10;
-        if(mins < 10){
-          mins = "0" + mins;
-        }
-        if (secs < 10) {
-          secs = "0" + secs;
-        }
-        if (secs >= 60){
-          secs = 0;
-        }
-        if (mins == 2 && secs == 30) {
-          reset()
-          console.log('Game is over')
-          return;
-        }
-        timerOutput.innerHTML = mins + ":" + secs + ':' + tenths;
-        increment()
-      }, 100);
-    }
+}
+
+function incrementTimer () {
+  if(running == 1) {
+    setTimeout(function () {
+      time++;
+      var mins = Math.floor(time/10/60);
+      var secs = Math.floor(time/10 % 60);
+      var tenths = time % 10;
+      if(mins < 10) {
+        mins = "0" + mins;
+      }
+      if (secs < 10) {
+        secs = "0" + secs;
+      }
+      if (secs >= 60) {
+        secs = 0;
+      }
+      if (mins == 2 && secs == 30) {
+        resetTimer();
+        console.log('Game is over');
+        return;
+      }
+      timerOutput.innerHTML = mins + ":" + secs + ':' + tenths;
+      incrementTimer();
+    }, 100);
   }
-  startPause()
 }
 /*------------------/TIMER------------------*/
 
@@ -176,7 +184,10 @@ var winGame = function () {
 //-----A start function------//
 var startGame = function () {
   //needs to reset score timer and everything
+  // startButton.style.display = 'none';
+  // resetButton.style.display = 'block';
   populateGameBoard();
 }
 
-startResetButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame)
+// resetButton.style.display = 'none';
