@@ -4,16 +4,13 @@
 //each tile picks a random place on the board in sequence
 //area must be populated to place a tile unless its the bottom layer
 
-//A start function
-var startGame = function () {
-  //-- start is linked to a button
-  
-  //-- user is playing function
-}
+//-----Global Variables-----//
+var startPauseButton = document.getElementById('startPause')
+var resetTimeButton = document.getElementById("resetButton")
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
-  //global variables
+  //gameboard variables
   var ourTiles = document.querySelectorAll('.tile-spot');
   var totalCount = []
   var zeroCount = [];
@@ -93,6 +90,7 @@ var populateGameBoard = function () {
     populateLayer1();
   }
 
+  timer()
 };
 //------End of index generator-------//
 
@@ -103,11 +101,9 @@ var pictureGenerator = function () {
 
 //link the timer to the game
 /*------------------TIMER------------------*/
-  startPauseButton = document.getElementById("startPause")
-  startPauseButton.addEventListener('click', startPause)
-  resetTimeButton = document.getElementById("resetButton")
+var timer = function () {
   resetTimeButton.addEventListener('click', reset)
-  timerOutput = document.getElementById("timerOutput")
+  var timerOutput = document.getElementById("timerOutput")
   var time = 0;
   var running = 0;
   function startPause () {
@@ -144,15 +140,17 @@ var pictureGenerator = function () {
           secs = 0;
         }
         if (mins == 2 && secs == 30) {
-            reset()
-            console.log('Game is over')
-            return;
+          reset()
+          console.log('Game is over')
+          return;
         }
         timerOutput.innerHTML = mins + ":" + secs + ':' + tenths;
-        this.increment()
+        increment()
       }, 100);
     }
   }
+  startPause()
+}
 /*------------------/TIMER------------------*/
 
 //have a score function
@@ -174,3 +172,11 @@ var winGame = function () {
   //-- check if it is greater than high score
   //-- check is time is better
 }
+
+//-----A start function------//
+var startGame = function () {
+  //needs to reset score timer and everything
+  populateGameBoard();
+}
+
+startPauseButton.addEventListener('click', startGame)
