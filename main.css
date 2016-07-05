@@ -127,9 +127,13 @@
 }
 
 .second-layer {
-  
+  position: relative;
+  top: -90px;
+  left: -2px;
 }
 
 .third-layer {
-
+  position: relative;
+  top: -180px;
+  left: -4px;
 }
