@@ -22,16 +22,18 @@
   font-family: 'Press Start 2P', cursive;
 }
 
-#startPause {
+#startButton {
   margin-top: -190px;
-  margin-left: 50px;
+  margin-left: 5px;
   width: 80px;
   position: relative;
 }
 
-#startPause:focus,
-#resetButton:focus {
-  outline: 0;
+#pauseButton {
+  margin-top: -190px;
+  margin-left: 25px;
+  width: 80px;
+  position: relative;
 }
 
 #resetButton {
@@ -39,6 +41,12 @@
   margin-left: 25px;
   width: 80px;
   position: relative;
+}
+
+#startButton:focus,
+#pauseButton:focus,
+#resetButton:focus {
+  outline: 0;
 }
 
 .container-fluid {
