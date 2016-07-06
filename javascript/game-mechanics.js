@@ -8,10 +8,16 @@
 var startButton = document.getElementById('startButton');
 var resetButton = document.getElementById('resetButton');
 var pauseButton = document.getElementById('pauseButton');
-var timerOutput = document.getElementById("timerOutput");
+var timerOutput = document.getElementById('timerOutput');
+var scoreNode = document.getElementById('score');
+var highScoreNode = document.getElementById('highScore');
+var bestTimeNode = document.getElementById('bestTime');
 var ourTiles = document.querySelectorAll('.tile-spot');
 var time = 0;
 var running = 0;
+var score = 0;
+var highScore = 0;
+var bestTime = 0;
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
