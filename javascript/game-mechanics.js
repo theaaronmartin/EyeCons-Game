@@ -11,6 +11,7 @@ var pauseButton = document.getElementById('pauseButton');
 var timerOutput = document.getElementById('timerOutput');
 var scoreNode = document.getElementById('score');
 var highScoreNode = document.getElementById('highScore');
+var gameBoard = document.querySelector('.game-board');
 var ourTiles = document.querySelectorAll('.tile-spot');
 var time = 0;
 var running = 0;
@@ -18,6 +19,7 @@ var score = 0;
 var highScore = 0;
 var pictureId = 0;
 var pictureArray = [];
+var totalMatches = [];
 var isUserTurn = false;
 
 //-------populate the game board-----------//
@@ -190,9 +192,11 @@ function resetTimer () {
   console.log('Game has been reset')
   resetButton.style.display = 'none';
   pauseButton.style.display = 'none';
-  startButton.style.display = 'inline'
+  startButton.style.display = 'inline';
+  gameBoard.style.display = 'block';
   numberArray = [];
   pictureArray = [];
+  totalMatches = [];
   running = 0;
   time = 0;
   timerOutput.innerHTML = "00:00:00";
@@ -209,10 +213,12 @@ function pauseTimer () {
     incrementTimer();
     pauseButton.innerHTML = "Pause";
     resetButton.disabled = true;
+    gameBoard.style.display = 'block';
   } else {
     running = 0;
     pauseButton.innerHTML = "Resume";
     resetButton.disabled = false;
+    gameBoard.style.display = 'none';
   }
 }
 
@@ -272,8 +278,12 @@ var userInteraction = function (click) {
       if (click1 === click2) {
         score++;
         scoreNode.innerHTML = score;
+        totalMatches.push(userClicks);
         for (var i = 0; i < userClicks.length; i++) {
           userClicks[i].style.display = 'none';
+        }
+        if (totalMatches.length === 50) {
+          winGame();
         }
       } else {
         score--;
@@ -285,16 +295,17 @@ var userInteraction = function (click) {
 
 //have a score function
 var getHighScore = function () {
-  if (score > highScore) {
-    score = highScore;
-    highScoreNode.innerHTML = highScore;
+  if (score > localStorage.getItem("highscore")) {
+    localStorage.setItem("highscore", score);
+    highScoreNode.innerHTML = score;
   }
 }
 
 //gameover function
 var gameOver = function () {
-  //-- displays a game over sign
-  //-- resets start button
+  numberArray = [];
+  pictureArray = [];
+  totalMatches = [];
   resetButton.style.display = 'none';
   pauseButton.style.display = 'none';
   startButton.style.display = 'inline';
@@ -302,10 +313,12 @@ var gameOver = function () {
 
 //win game function
 var winGame = function () {
-  //-- display score
-  //-- display time
-  //-- check if it is greater than high score
-  //-- check is time is better
+  numberArray = [];
+  pictureArray = [];
+  totalMatches = [];
+  resetButton.style.display = 'none';
+  pauseButton.style.display = 'none';
+  startButton.style.display = 'inline';
   getHighScore();
 }
 
@@ -321,6 +334,7 @@ var startGame = function () {
   scoreNode.innerHTML = 0;
   numberArray = [];
   pictureArray = [];
+  totalMatches = [];
   for (i = 0; i < ourTiles.length; i++) {
     ourTiles[i].innerHTML = '';
   }
