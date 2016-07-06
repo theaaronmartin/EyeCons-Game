@@ -8,10 +8,17 @@
 var startButton = document.getElementById('startButton');
 var resetButton = document.getElementById('resetButton');
 var pauseButton = document.getElementById('pauseButton');
-var timerOutput = document.getElementById("timerOutput");
+var timerOutput = document.getElementById('timerOutput');
+var scoreNode = document.getElementById('score');
+var highScoreNode = document.getElementById('highScore');
 var ourTiles = document.querySelectorAll('.tile-spot');
 var time = 0;
 var running = 0;
+var score = 0;
+var highScore = 0;
+var pictureId = 0;
+var pictureArray = [];
+var isUserTurn = false;
 
 //-------populate the game board-----------//
 var populateGameBoard = function () {
@@ -27,12 +34,12 @@ var populateGameBoard = function () {
       var randomNum = Math.round(100 * Math.random())/100;
       if(randomNum <= 0.18) {
         ourTiles[i].dataset.layer = 0;
-        zeroCount.push(ourTiles[i].dataset.layer);
+        zeroCount.push(ourTiles[i]);
       } else {
         ourTiles[i].dataset.layer = 1;
-        oneCount.push(ourTiles[i].dataset.layer);
-        totalCount.push(ourTiles[i].dataset.layer);
-        var picture = pictureGenerator()
+        oneCount.push(ourTiles[i]);
+        totalCount.push(ourTiles[i]);
+        var picture = createPictureSpot()
         picture.style.zIndex = '1';
         ourTiles[i].appendChild(picture);
       }
@@ -48,12 +55,12 @@ var populateGameBoard = function () {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.20) {
           ourTiles[i].dataset.layer = 1;
-          oneCount.push(ourTiles[i].dataset.layer);
+          oneCount.push(ourTiles[i]);
         } else {
           ourTiles[i].dataset.layer = 2;
-          twoCount.push(ourTiles[i].dataset.layer);
-          totalCount.push(ourTiles[i].dataset.layer);
-          var picture = pictureGenerator()
+          twoCount.push(ourTiles[i]);
+          totalCount.push(ourTiles[i]);
+          var picture = createPictureSpot()
           picture.style.zIndex = '2';
           picture.classList.add('second-layer');
           ourTiles[i].appendChild(picture);
@@ -73,13 +80,13 @@ var populateGameBoard = function () {
         var randomNum = Math.round(100 * Math.random())/100;
         if(randomNum <= 0.22) {
           ourTiles[i].dataset.layer = 2;
-          twoCount.push(ourTiles[i].dataset.layer);
+          twoCount.push(ourTiles[i]);
         } else {
           if (totalCount.length < 100) {
             ourTiles[i].dataset.layer = 3;
-            threeCount.push(ourTiles[i].dataset.layer);
-            totalCount.push(ourTiles[i].dataset.layer);
-            var picture = pictureGenerator()
+            threeCount.push(ourTiles[i]);
+            totalCount.push(ourTiles[i]);
+            var picture = createPictureSpot()
             picture.style.zIndex = '3';
             picture.classList.add('third-layer');
             ourTiles[i].appendChild(picture);
@@ -109,18 +116,69 @@ var populateGameBoard = function () {
   }
 
   startTimer();
+  userInteraction();
 };
 //------End of index generator-------//
 
-//randomly generate a picture
-var pictureGenerator = function () {
+//-----Picture Generator------//
+
+var createPictureSpot = function () {
+  var thePicture = pictureArray[pictureId++]
   var woodenBlock = document.createElement('DIV');
   var randomPicture = document.createElement('IMG');
   woodenBlock.classList.add('woodenTile');
   randomPicture.classList.add('tile-pic');
+  randomPicture.setAttribute('src', thePicture);
   woodenBlock.appendChild(randomPicture);
   return woodenBlock;
 }
+
+function imageGenerator() {
+  var url = "assets/images/eyecons/set1/";
+  var imgArray = [url + "set1-tile-01.jpg",
+  url + "set1-tile-02.jpg",
+  url + "set1-tile-03.jpg",
+  url + "set1-tile-04.jpg",
+  url + "set1-tile-05.jpg",
+  url + "set1-tile-06.jpg",
+  url + "set1-tile-07.jpg",
+  url + "set1-tile-08.jpg",
+  url + "set1-tile-09.jpg",
+  url + "set1-tile-10.jpg",
+  url + "set1-tile-11.jpg",
+  url + "set1-tile-12.jpg",
+  url + "set1-tile-13.jpg",
+  url + "set1-tile-14.jpg",
+  url + "set1-tile-15.jpg",
+  url + "set1-tile-16.jpg",
+  url + "set1-tile-17.jpg",
+  url + "set1-tile-18.jpg",
+  url + "set1-tile-19.jpg",
+  url + "set1-tile-20.jpg",
+  url + "set1-tile-21.jpg",
+  url + "set1-tile-22.jpg",
+  url + "set1-tile-23.jpg",
+  url + "set1-tile-24.jpg",
+  url + "set1-tile-25.jpg" /*1-25*/
+  ];
+  var count = 0;
+  var id = 0
+  for (var i = 0; i < 25; i++) {
+    while (count < 4) {
+      var randomNumber = Math.floor((Math.random() * 100));
+      console.log(randomNumber);
+      if (pictureArray[randomNumber] == null) {
+        pictureArray[randomNumber] = imgArray[i];
+        count++;
+        console.log("hit");
+      }
+    }
+    count = 0;
+  }
+  console.log("done");
+  console.log(pictureArray);
+}
+
 
 //link the timer to the game
 /*------------------TIMER------------------*/
@@ -130,8 +188,11 @@ function startTimer () {
 
 function resetTimer () {
   console.log('Game has been reset')
-  // resetButton.style.display = 'none';
-  // startButton.style.display = 'block';
+  resetButton.style.display = 'none';
+  pauseButton.style.display = 'none';
+  startButton.style.display = 'inline'
+  numberArray = [];
+  pictureArray = [];
   running = 0;
   time = 0;
   timerOutput.innerHTML = "00:00:00";
@@ -147,9 +208,11 @@ function pauseTimer () {
     running = 1;
     incrementTimer();
     pauseButton.innerHTML = "Pause";
+    resetButton.disabled = true;
   } else {
     running = 0;
     pauseButton.innerHTML = "Resume";
+    resetButton.disabled = false;
   }
 }
 
@@ -170,7 +233,7 @@ function incrementTimer () {
         secs = 0;
       }
       if (mins == 2 && secs == 30) {
-        resetTimer();
+        gameOver();
         console.log('Game is over');
         return;
       }
@@ -181,16 +244,60 @@ function incrementTimer () {
 }
 /*------------------/TIMER------------------*/
 
+//---------User Interaction-------//
+var userInteraction = function (click) {
+  var userClicks = [];
+  var allTiles = document.querySelectorAll('.woodenTile');
+  for (var i = 0; i < allTiles.length; i++) {
+    allTiles[i].addEventListener('click', function () {
+      if  (userClicks.length <= 1) {
+        if (userClicks[0] === this){
+          console.log('already choose that!')
+        } else {
+          userClicks.push(this);
+          checkInteraction(this);
+        }
+      } else {
+        userClicks = [];
+        userClicks.push(this);
+      }
+      console.log(userClicks);
+    });
+  }
+
+  var checkInteraction = function (clicked) {
+    if (userClicks.length === 2){
+      var click1 = userClicks[0].firstChild.getAttribute('src')
+      var click2 = userClicks[1].firstChild.getAttribute('src')
+      if (click1 === click2) {
+        score++;
+        scoreNode.innerHTML = score;
+        for (var i = 0; i < userClicks.length; i++) {
+          userClicks[i].style.display = 'none';
+        }
+      } else {
+        score--;
+        scoreNode.innerHTML = score;
+      }
+    }
+  }
+}
+
 //have a score function
 var getHighScore = function () {
-  //-- score counts up the more you get right
-  //-- highscore function
+  if (score > highScore) {
+    score = highScore;
+    highScoreNode.innerHTML = highScore;
+  }
 }
 
 //gameover function
 var gameOver = function () {
   //-- displays a game over sign
   //-- resets start button
+  resetButton.style.display = 'none';
+  pauseButton.style.display = 'none';
+  startButton.style.display = 'inline';
 }
 
 //win game function
@@ -199,21 +306,31 @@ var winGame = function () {
   //-- display time
   //-- check if it is greater than high score
   //-- check is time is better
+  getHighScore();
 }
 
 //-----A start function------//
 var startGame = function () {
   //needs to reset score timer and everything
-  // startButton.style.display = 'none';
-  // resetButton.style.display = 'block';
+  startButton.style.display = 'none';
+  resetButton.style.display = 'inline';
+  pauseButton.style.display = 'inline';
+  resetButton.disabled = true;
+  pictureId = 0
+  score = 0;
+  scoreNode.innerHTML = 0;
+  numberArray = [];
+  pictureArray = [];
   for (i = 0; i < ourTiles.length; i++) {
     ourTiles[i].innerHTML = '';
   }
-  populateGameBoard();
+  imageGenerator();
+  setTimeout(populateGameBoard, 3000);
 }
 
 //-------Event Listeners------//
 resetButton.addEventListener('click', resetTimer);
 pauseButton.addEventListener('click', pauseTimer);
 startButton.addEventListener('click', startGame);
-// resetButton.style.display = 'none';
+resetButton.style.display = 'none';
+pauseButton.style.display = 'none';

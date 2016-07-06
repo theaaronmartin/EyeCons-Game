@@ -56,10 +56,9 @@ function imageGenerator() {
             url + "set1-tile-24.jpg",
             url + "set1-tile-25.jpg" /*1-25*/
         ];
-        randomImageIndex = Math.floor((Math.random() * imgArray.length));
-        baseUrl = "url('" + imgArray[randomImageIndex] + "')";
         var pictureArray = [];
         var count = 0;
+        var id = 0
         for (var i = 0; i < 25; i++) {
           while (count < 4) {
           var randomNumber = Math.floor((Math.random() * 100));;
@@ -74,16 +73,4 @@ function imageGenerator() {
         }
         console.log("done");
         console.log(pictureArray);
-}
-
-var renderBoard = function() {
-  var phase1 = true;
-    if (phase1 === true) {
-        var tileSpots = $('.tile-spot')
-        var firstPhaseTiles = $('<div class="woodenTile"><div>')
-        var firstPhasePics = $('<img class="tile-pic">')
-        firstPhasePics.attr('src', imageGenerator)
-        firstLayerPics.appendTo(firstLayerTiles)
-        firstLayerTiles.appendTo(tileSpots)
-    }
 }
