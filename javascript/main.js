@@ -30,7 +30,7 @@ var navigate = function(pageFrom, pageTo) {
 
 function imageGenerator() {
     var url = "assets/images/eyecons/set1/";
-    imgArray = [url + "set1-tile-01.jpg",
+    var imgArray = [url + "set1-tile-01.jpg",
             url + "set1-tile-02.jpg",
             url + "set1-tile-03.jpg",
             url + "set1-tile-04.jpg",
@@ -54,9 +54,9 @@ function imageGenerator() {
             url + "set1-tile-22.jpg",
             url + "set1-tile-23.jpg",
             url + "set1-tile-24.jpg",
-            url + "set1-tile-25.jpg", /*1-25*/
-        ],
-        randomImageIndex = Math.floor((Math.random() * imgArray.length)),
+            url + "set1-tile-25.jpg" /*1-25*/
+        ];
+        randomImageIndex = Math.floor((Math.random() * imgArray.length));
         baseUrl = "url('" + imgArray[randomImageIndex] + "')";
         var pictureArray = [];
         var count = 0;
