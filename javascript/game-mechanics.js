@@ -55,6 +55,7 @@ var populateGameBoard = function () {
           totalCount.push(ourTiles[i].dataset.layer);
           var picture = pictureGenerator()
           picture.style.zIndex = '2';
+          picture.classList.add('second-layer');
           ourTiles[i].appendChild(picture);
         }
       } else {
@@ -80,6 +81,7 @@ var populateGameBoard = function () {
             totalCount.push(ourTiles[i].dataset.layer);
             var picture = pictureGenerator()
             picture.style.zIndex = '3';
+            picture.classList.add('third-layer');
             ourTiles[i].appendChild(picture);
           } else {
             break;
