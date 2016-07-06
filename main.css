@@ -7,6 +7,24 @@
   display: none;
 }
 
+h1 {
+  color: #fff;
+  display: inline;
+  float: left;
+  position: relative;
+  bottom: 4.2em;
+  left: 29em;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.score,
+.highScore,
+.bestTime {
+  font-size: 32px;
+  color: #c2be84;
+}
+
 .loginWallpaper {
   background-image: url('assets/images/eyecons-bg.png');
   /*background-size: cover;*/
