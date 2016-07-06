@@ -7,22 +7,33 @@
   display: none;
 }
 
+#gameText {
+  color: #fff;
+  position: relative;
+  bottom: 15em;
+  left: 5em;
+  font-size: 48px;
+}
+
 h1 {
   color: #fff;
   display: inline;
   float: left;
   position: relative;
-  bottom: 4.2em;
-  left: 29em;
+  bottom: 3.08em;
+  left: 32em;
   padding-right: 20px;
   padding-left: 20px;
 }
 
 #score,
-#highScore,
-#bestTime {
+#highScore {
   font-size: 32px;
   color: #c2be84;
+  background-color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  vertical-align: top;
 }
 
 .loginWallpaper {
@@ -69,6 +80,7 @@ h1 {
 
 .container-fluid {
   padding-left: 0;
+  padding-right: 0;
 }
 
 .eyecon-logo {
@@ -101,6 +113,11 @@ h1 {
   margin: auto;
   margin-top: 35px;
   text-align: center;
+}
+
+.banner-background {
+  background-color: #c2be84;
+  max-height: 126px;
 }
 
 .header-background {

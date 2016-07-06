@@ -47,9 +47,9 @@
 
     <div id="gameScreen" class="page">
       <div class="container-fluid">
-          <div>
+          <div class="banner-background">
             <img class="header-background" src="assets/images/eyecons-backplate-landscape-default.png" alt="" />
-            <img class="header-foreground" src="assets/images/eyecons-bar-landscape-2.png" alt=""/>
+            <img class="header-foreground" src="assets/images/eyecons-bar-landscape-2-long.png" alt=""/>
               <div>
                 <div id="timerOutput">00:00:00</div>
                 <button id="startButton" type="button" class="btn btn-default">Start</button>
@@ -59,13 +59,10 @@
           </div>
           <div>
             <div>
-              <h1>Score: <span id="score"></span></h1>
+              <h1>Score: <span id="score">0</span></h1>
             </div>
             <div>
-              <h1>High Score: <span id="highScore"></span></h1>
-            </div>
-            <div>
-              <h1>Best Time: <span id="bestTime"></span></h1>
+              <h1>High Score: <span id="highScore">0</span></h1>
             </div>
           </div>
       </div>
@@ -129,6 +126,9 @@
         <div class="tile-spot"></div>
       </article>
       <!-- end of game board -->
+      <div id="gameText">
+        <p></p>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
