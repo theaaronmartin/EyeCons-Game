@@ -203,6 +203,7 @@ function resetTimer () {
   time = 0;
   timerOutput.innerHTML = "00:00:00";
   pauseButton.innerHTML = "Pause";
+  displayNode.innerHTML = '';
   for (i = 0; i < ourTiles.length; i++) {
     ourTiles[i].innerHTML = '';
   }
@@ -301,7 +302,7 @@ var userInteraction = function (click) {
 var getHighScore = function () {
   if (score > localStorage.getItem("highscore")) {
     highScore = localStorage.setItem("highscore", score);
-    highScoreNode.innerHTML = highScore;
+    highScoreNode.innerHTML = localStorage.getItem("highscore")
   }
 }
 
@@ -314,6 +315,11 @@ var gameOver = function () {
   pauseButton.style.display = 'none';
   startButton.style.display = 'inline';
   displayNode.innerHTML = 'Game over! Try again.';
+  running = 0;
+  time = 0;
+  for (i = 0; i < ourTiles.length; i++) {
+    ourTiles[i].innerHTML = '';
+  }
 }
 
 //win game function
@@ -325,6 +331,8 @@ var winGame = function () {
   pauseButton.style.display = 'none';
   startButton.style.display = 'inline';
   displayNode.innerHTML = 'Congratulations you won with a score of: ' + score + '!';
+  running = 0;
+  time = 0;
   getHighScore();
 }
 
