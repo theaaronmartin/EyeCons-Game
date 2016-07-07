@@ -11,12 +11,13 @@ var pauseButton = document.getElementById('pauseButton');
 var timerOutput = document.getElementById('timerOutput');
 var scoreNode = document.getElementById('score');
 var highScoreNode = document.getElementById('highScore');
+var displayNode = document.getElementById('gameText');
 var gameBoard = document.querySelector('.game-board');
 var ourTiles = document.querySelectorAll('.tile-spot');
 var time = 0;
 var running = 0;
 var score = 0;
-var highScore = 0;
+var highScore = localStorage.getItem("highscore");
 var pictureId = 0;
 var pictureArray = [];
 var totalMatches = [];
@@ -185,6 +186,7 @@ function imageGenerator() {
 //link the timer to the game
 /*------------------TIMER------------------*/
 function startTimer () {
+  pauseButton.disabled = false;
   pauseTimer();
 }
 
@@ -214,11 +216,13 @@ function pauseTimer () {
     pauseButton.innerHTML = "Pause";
     resetButton.disabled = true;
     gameBoard.style.display = 'block';
+    displayNode.innerHTML = '';
   } else {
     running = 0;
     pauseButton.innerHTML = "Resume";
     resetButton.disabled = false;
     gameBoard.style.display = 'none';
+    displayNode.innerHTML = 'Resume to continue playing!';
   }
 }
 
@@ -258,7 +262,7 @@ var userInteraction = function (click) {
     allTiles[i].addEventListener('click', function () {
       if  (userClicks.length <= 1) {
         if (userClicks[0] === this){
-          console.log('already choose that!')
+          displayNode.innerHTML = 'You already choose that';
         } else {
           userClicks.push(this);
           checkInteraction(this);
@@ -296,8 +300,8 @@ var userInteraction = function (click) {
 //have a score function
 var getHighScore = function () {
   if (score > localStorage.getItem("highscore")) {
-    localStorage.setItem("highscore", score);
-    highScoreNode.innerHTML = score;
+    highScore = localStorage.setItem("highscore", score);
+    highScoreNode.innerHTML = highScore;
   }
 }
 
@@ -309,6 +313,7 @@ var gameOver = function () {
   resetButton.style.display = 'none';
   pauseButton.style.display = 'none';
   startButton.style.display = 'inline';
+  displayNode.innerHTML = 'Game over! Try again.';
 }
 
 //win game function
@@ -319,6 +324,7 @@ var winGame = function () {
   resetButton.style.display = 'none';
   pauseButton.style.display = 'none';
   startButton.style.display = 'inline';
+  displayNode.innerHTML = 'Congratulations you won with a score of: ' + score + '!';
   getHighScore();
 }
 
@@ -329,6 +335,9 @@ var startGame = function () {
   resetButton.style.display = 'inline';
   pauseButton.style.display = 'inline';
   resetButton.disabled = true;
+  pauseButton.disabled = true;
+  displayNode.innerHTML = '';
+  highScoreNode.innerHTML = highScore;
   pictureId = 0
   score = 0;
   scoreNode.innerHTML = 0;
