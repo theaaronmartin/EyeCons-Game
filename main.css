@@ -8,10 +8,11 @@
 }
 
 #gameText {
+  margin-bottom: 50px;
+  margin-top: -50px;
   color: #fff;
   position: relative;
-  bottom: 15em;
-  left: 5em;
+  text-align: center;
   font-size: 48px;
 }
 
@@ -117,7 +118,7 @@ h1 {
 
 .banner-background {
   background-color: #c2be84;
-  max-height: 126px;
+  max-height: 125px;
 }
 
 .header-background {
@@ -127,6 +128,7 @@ h1 {
 
 .header-foreground {
   position: relative;
+  width: 100%;
 }
 
 .game-board {
@@ -171,4 +173,8 @@ h1 {
   position: relative;
   top: -180px;
   left: -4px;
+}
+
+.margin30 {
+  margin-bottom: 30px;
 }
