@@ -320,6 +320,7 @@ var gameOver = function () {
   for (i = 0; i < ourTiles.length; i++) {
     ourTiles[i].innerHTML = '';
   }
+  getHighScore();
 }
 
 //win game function
@@ -345,7 +346,7 @@ var startGame = function () {
   resetButton.disabled = true;
   pauseButton.disabled = true;
   displayNode.innerHTML = '';
-  highScoreNode.innerHTML = highScore;
+  highScoreNode.innerHTML = localStorage.getItem("highscore");;
   pictureId = 0
   score = 0;
   scoreNode.innerHTML = 0;
