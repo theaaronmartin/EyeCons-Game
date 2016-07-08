@@ -346,7 +346,9 @@ var startGame = function () {
   resetButton.disabled = true;
   pauseButton.disabled = true;
   displayNode.innerHTML = '';
-  highScoreNode.innerHTML = localStorage.getItem("highscore");;
+  if (localStorage.getItem("highscore") === null){
+    highScoreNode.innerHTML = 0;
+  }
   pictureId = 0
   score = 0;
   scoreNode.innerHTML = 0;
